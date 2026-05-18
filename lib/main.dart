@@ -1,20 +1,17 @@
+import 'package:event_management/Widget/listing_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MainApp());
-}
-
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
+  runApp(
+    MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+        appBar: AppBar(
+          backgroundColor: Colors.amberAccent,
+          foregroundColor: Colors.white,
+          title: Text('Event Manager'),
         ),
+        body: ListingScreen(),
       ),
-    );
-  }
+    ),
+  );
 }
