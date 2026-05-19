@@ -18,9 +18,9 @@ class _SplashScreenState extends State<SplashScreen> {
           begin: AlignmentGeometry.topLeft,
           end: AlignmentGeometry.bottomRight,
           colors: [
-            Colors.blue.shade200,
-            Colors.blue.shade400,
-            Colors.blue.shade600,
+            Color(0xFF000000), // Pure black
+            Color(0xFF15161B), // Dark carbon
+            Color(0xFF202229), // Metallic charcoal
           ],
         ),
       ),
@@ -42,6 +42,14 @@ class _SplashScreenState extends State<SplashScreen> {
             height: 100,
             width: 100,
           ),
+          Text(
+            'Event Manager',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 35,
+              fontWeight: FontWeight(50),
+            ),
+          ),
           SizedBox(height: 100, width: 100),
           CircularProgressIndicator.adaptive(
             valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
@@ -49,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           Text(
             "Loading...",
-            style: TextStyle(color: Colors.black, fontSize: 16),
+            style: TextStyle(color: Colors.white, fontSize: 16),
           ),
           SizedBox(height: 100, width: 100),
           Expanded(
@@ -57,11 +65,11 @@ class _SplashScreenState extends State<SplashScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Icon(Icons.copyright, size: 20, color: Colors.black),
+                Icon(Icons.copyright, size: 20, color: Colors.white),
                 SizedBox(width: 4),
                 Text(
                   '${DateTime.now().year} Event Planner. All rights reserved.',
-                  style: TextStyle(color: Colors.black, fontSize: 16),
+                  style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ],
             ),
