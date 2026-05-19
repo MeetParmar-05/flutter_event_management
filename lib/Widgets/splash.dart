@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               Text(
                 "V1.0.0",
-                style: TextStyle(color: Colors.black, fontSize: 16),
+                style: TextStyle(color: Colors.white, fontSize: 16),
               ),
             ],
           ),
@@ -52,11 +52,11 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           SizedBox(height: 100, width: 100),
           CircularProgressIndicator.adaptive(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+            valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF00F2FE)),
             strokeWidth: 4.0,
           ),
           Text(
-            "Loading...",
+            "Fetching data...",
             style: TextStyle(color: Colors.white, fontSize: 16),
           ),
           SizedBox(height: 100, width: 100),
@@ -68,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 Icon(Icons.copyright, size: 20, color: Colors.white),
                 SizedBox(width: 4),
                 Text(
-                  '${DateTime.now().year} Event Planner. All rights reserved.',
+                  '${DateTime.now().year} - Event Manager. All rights reserved.',
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ],
