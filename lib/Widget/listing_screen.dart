@@ -1,16 +1,11 @@
 import 'package:event_management/Models/event_data.dart';
 import 'package:flutter/material.dart';
 
-class ListingScreen extends StatefulWidget {
+class ListingScreen extends StatelessWidget {
   const ListingScreen({super.key, required this.events});
 
   final List<EventData> events;
 
-  @override
-  State<ListingScreen> createState() => _ListingScreenState();
-}
-
-class _ListingScreenState extends State<ListingScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,9 +22,9 @@ class _ListingScreenState extends State<ListingScreen> {
         ),
       ),
       child: ListView.builder(
-        itemCount: widget.events.length,
+        itemCount: events.length,
         itemBuilder: (context, index) {
-          EventData event = widget.events[index];
+          EventData event = events[index];
           return Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
@@ -85,9 +80,7 @@ class _ListingScreenState extends State<ListingScreen> {
                     Text(
                       "${event.department} Department",
                       style: TextStyle(
-                        color: const Color(
-                          0xFF00F2FE,
-                        ).withOpacity(0.8), // Clear secondary branding color
+                        color: const Color(0xFF00F2FE),
                         fontWeight: FontWeight.w600,
                         fontSize: 13,
                       ),
@@ -96,9 +89,7 @@ class _ListingScreenState extends State<ListingScreen> {
                     Text(
                       "${event.eventDate.day}-${event.eventDate.month}-${event.eventDate.year}",
                       style: TextStyle(
-                        color: Colors.white.withOpacity(
-                          0.6,
-                        ), // Muted white ensures readability without glare
+                        color: Colors.white,
                         fontSize: 13,
                         height: 1.3,
                       ),
