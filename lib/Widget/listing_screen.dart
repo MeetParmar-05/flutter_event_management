@@ -1,10 +1,16 @@
 import 'package:event_management/Models/event_data.dart';
 import 'package:flutter/material.dart';
+import 'package:event_management/Widget/add_event_screen.dart';
 
 class ListingScreen extends StatelessWidget {
-  const ListingScreen({super.key, required this.events});
+  const ListingScreen({
+    super.key,
+    required this.events,
+    required this.onEventAdded,
+  });
 
   final List<EventData> events;
+  final ValueChanged<EventData> onEventAdded;
 
   @override
   Widget build(BuildContext context) {
@@ -25,27 +31,44 @@ class ListingScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5),
             child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
+              onPressed: () async {
+                final newEvent = await Navigator.of(context).push<EventData>(
+                  MaterialPageRoute(
+                    builder: (context) => const AddEventScreen(),
+                  ),
+                );
+                if (newEvent != null) {
+                  onEventAdded(newEvent);
+                }
               },
               icon: Icon(Icons.add, size: 40),
             ),
           ),
         ],
       ),
-      child: ListView.builder(
-        itemCount: events.length,
-        itemBuilder: (context, index) {
-          EventData event = events[index];
-          return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            decoration: BoxDecoration(
-              color: const Color(0xFF1E1E2E), // Deep slate dark surface
-              borderRadius: BorderRadius.circular(16),
-              border: const Border(
-                left: BorderSide(
-                  color: Color(0xFF00F2FE), // Vivid Neon Cyan accent line
-                  width: 5,
+      body: Container(
+        padding: EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFF000000), Color(0xFF15161B), Color(0xFF202229)],
+          ),
+        ),
+        child: ListView.builder(
+          itemCount: events.length,
+          itemBuilder: (context, index) {
+            EventData event = events[index];
+            return Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color: const Color(0xFF1E1E2E), // Deep slate dark surface
+                borderRadius: BorderRadius.circular(16),
+                border: const Border(
+                  left: BorderSide(
+                    color: Color(0xFF00F2FE), // Vivid Neon Cyan accent line
+                    width: 5,
+                  ),
                 ),
                 boxShadow: [
                   BoxShadow(
@@ -104,6 +127,22 @@ class ListingScreen extends StatelessWidget {
                           fontSize: 13,
                           height: 1.3,
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+                trailing: Container(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.edit, color: Colors.blue),
+                      ),
+                      SizedBox(width: 8),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.delete, color: Colors.red),
                       ),
                     ],
                   ),
