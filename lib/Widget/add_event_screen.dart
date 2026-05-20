@@ -54,7 +54,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
         backgroundColor: Colors.cyanAccent,
         foregroundColor: Colors.black,
         title: Text(
-          'Event Manager',
+          'Add New Event',
           style: TextStyle(
             fontFamily: "orbitron",
             fontSize: 24,
@@ -63,15 +63,17 @@ class _AddEventScreenState extends State<AddEventScreen> {
         ),
       ),
       body: Container(
-        margin: const EdgeInsets.all(16.0),
+        margin: const EdgeInsets.all(16),
         child: Form(
           key: _formKey,
           child: ListView(
             children: [
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 autocorrect: true,
                 autofocus: true,
                 keyboardType: TextInputType.text,
+                textCapitalization: TextCapitalization.words,
                 validator: (value) {
                   return (value == null || value.isEmpty)
                       ? "Please Enter Event Name"
@@ -82,15 +84,17 @@ class _AddEventScreenState extends State<AddEventScreen> {
                 },
                 decoration: const InputDecoration(
                   labelText: "Event Name",
+                  labelStyle: TextStyle(color: Colors.white70),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
                 ),
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 16),
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 autocorrect: true,
-
+                textCapitalization: TextCapitalization.words,
                 keyboardType: TextInputType.text,
                 validator: (value) {
                   return (value == null || value.isEmpty)
@@ -102,15 +106,17 @@ class _AddEventScreenState extends State<AddEventScreen> {
                 },
                 decoration: const InputDecoration(
                   labelText: "College Name",
+                  labelStyle: TextStyle(color: Colors.white70),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
                 ),
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 16),
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 autocorrect: true,
-
+                textCapitalization: TextCapitalization.words,
                 keyboardType: TextInputType.text,
                 validator: (value) {
                   return (value == null || value.isEmpty)
@@ -122,15 +128,16 @@ class _AddEventScreenState extends State<AddEventScreen> {
                 },
                 decoration: const InputDecoration(
                   labelText: "Department Name",
+                  labelStyle: TextStyle(color: Colors.white70),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
                 ),
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 16),
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 autocorrect: true,
-
                 keyboardType: TextInputType.text,
                 validator: (value) {
                   return (value == null || value.isEmpty)
@@ -142,12 +149,13 @@ class _AddEventScreenState extends State<AddEventScreen> {
                 },
                 decoration: const InputDecoration(
                   labelText: "Event Description",
+                  labelStyle: TextStyle(color: Colors.white70),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
                 ),
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 16),
               TextFormField(
                 controller: _dateController,
                 readOnly: true,
@@ -164,18 +172,21 @@ class _AddEventScreenState extends State<AddEventScreen> {
                     Icons.calendar_today,
                     color: Color(0xFF00F2FE),
                   ),
+                  labelStyle: TextStyle(color: Colors.white70),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
                 ),
               ),
-              SizedBox(height: 16.0),
-
+              SizedBox(height: 16),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 14.0),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                    horizontal: 24,
+                  ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.circular(20),
                   ),
                 ),
                 onPressed: () {
@@ -195,7 +206,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                 },
                 child: const Text(
                   "Add Event",
-                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
