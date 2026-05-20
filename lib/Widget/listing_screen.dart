@@ -1,16 +1,17 @@
 import 'package:event_management/Models/event_data.dart';
 import 'package:flutter/material.dart';
+import 'package:event_management/Widget/add_event_screen.dart';
 
-class ListingScreen extends StatefulWidget {
-  const ListingScreen({super.key, required this.events});
+class ListingScreen extends StatelessWidget {
+  const ListingScreen({
+    super.key,
+    required this.events,
+    required this.onEventAdded,
+  });
 
   final List<EventData> events;
+  final ValueChanged<EventData> onEventAdded;
 
-  @override
-  State<ListingScreen> createState() => _ListingScreenState();
-}
-
-class _ListingScreenState extends State<ListingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,20 +31,21 @@ class _ListingScreenState extends State<ListingScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5),
             child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
+              onPressed: () async {
+                final newEvent = await Navigator.of(context).push<EventData>(
+                  MaterialPageRoute(
+                    builder: (context) => const AddEventScreen(),
+                  ),
+                );
+                if (newEvent != null) {
+                  onEventAdded(newEvent);
+                }
               },
               icon: Icon(Icons.add, size: 40),
             ),
           ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     Navigator.pop(context);
-      //   },
-      //   child: Icon(Icons.arrow_back),
-      // ),
       body: Container(
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
@@ -54,9 +56,9 @@ class _ListingScreenState extends State<ListingScreen> {
           ),
         ),
         child: ListView.builder(
-          itemCount: widget.events.length,
+          itemCount: events.length,
           itemBuilder: (context, index) {
-            EventData event = widget.events[index];
+            EventData event = events[index];
             return Container(
               margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
@@ -125,6 +127,22 @@ class _ListingScreenState extends State<ListingScreen> {
                           fontSize: 13,
                           height: 1.3,
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+                trailing: Container(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.edit, color: Colors.blue),
+                      ),
+                      SizedBox(width: 8),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.delete, color: Colors.red),
                       ),
                     ],
                   ),

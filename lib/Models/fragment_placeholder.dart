@@ -1,3 +1,4 @@
+import 'package:event_management/Widget/add_event_screen.dart';
 import 'package:event_management/Widget/listing_screen.dart';
 import 'package:event_management/Widgets/splash.dart';
 import 'package:flutter/material.dart';
@@ -158,12 +159,6 @@ class _FragmentPlaceholderState extends State<FragmentPlaceholder> {
       ),
       child: Column(
         children: [
-          Center(
-            child: Text(
-              "Initial Text",
-              style: TextStyle(backgroundColor: Colors.orange),
-            ),
-          ),
           Expanded(
             child: Navigator(
               initialRoute: '/',
@@ -175,8 +170,17 @@ class _FragmentPlaceholderState extends State<FragmentPlaceholder> {
                     builder = (BuildContext context) => SplashScreen();
                     break;
                   case '/s2':
-                    builder = (BuildContext context) =>
-                        ListingScreen(events: events);
+                    builder = (BuildContext context) => ListingScreen(
+                      events: events,
+                      onEventAdded: (event) {
+                        setState(() {
+                          events.add(event);
+                        });
+                      },
+                    );
+                    break;
+                  case '/s3':
+                    builder = (BuildContext context) => AddEventScreen();
                     break;
                   default:
                     builder = (BuildContext context) =>

@@ -48,142 +48,158 @@ class _AddEventScreenState extends State<AddEventScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(16.0),
-      child: Form(
-        key: _formKey,
-        child: ListView(
-          children: [
-            TextFormField(
-              autocorrect: true,
-              autofocus: true,
-              keyboardType: TextInputType.text,
-              validator: (value) {
-                return (value == null || value.isEmpty)
-                    ? "Please Enter Event Name"
-                    : null;
-              },
-              onSaved: (newValue) {
-                ename = newValue!;
-              },
-              decoration: const InputDecoration(
-                labelText: "Event Name",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        backgroundColor: Colors.cyanAccent,
+        foregroundColor: Colors.black,
+        title: Text(
+          'Event Manager',
+          style: TextStyle(
+            fontFamily: "orbitron",
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      body: Container(
+        margin: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            children: [
+              TextFormField(
+                autocorrect: true,
+                autofocus: true,
+                keyboardType: TextInputType.text,
+                validator: (value) {
+                  return (value == null || value.isEmpty)
+                      ? "Please Enter Event Name"
+                      : null;
+                },
+                onSaved: (newValue) {
+                  ename = newValue!;
+                },
+                decoration: const InputDecoration(
+                  labelText: "Event Name",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 16.0),
-            TextFormField(
-              autocorrect: true,
+              SizedBox(height: 16.0),
+              TextFormField(
+                autocorrect: true,
 
-              keyboardType: TextInputType.text,
-              validator: (value) {
-                return (value == null || value.isEmpty)
-                    ? "Please Enter College Name"
-                    : null;
-              },
-              onSaved: (newValue) {
-                ecollege = newValue!;
-              },
-              decoration: const InputDecoration(
-                labelText: "College Name",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                keyboardType: TextInputType.text,
+                validator: (value) {
+                  return (value == null || value.isEmpty)
+                      ? "Please Enter College Name"
+                      : null;
+                },
+                onSaved: (newValue) {
+                  ecollege = newValue!;
+                },
+                decoration: const InputDecoration(
+                  labelText: "College Name",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 16.0),
-            TextFormField(
-              autocorrect: true,
+              SizedBox(height: 16.0),
+              TextFormField(
+                autocorrect: true,
 
-              keyboardType: TextInputType.text,
-              validator: (value) {
-                return (value == null || value.isEmpty)
-                    ? "Please Enter Department Name"
-                    : null;
-              },
-              onSaved: (newValue) {
-                edepartment = newValue!;
-              },
-              decoration: const InputDecoration(
-                labelText: "Department Name",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                keyboardType: TextInputType.text,
+                validator: (value) {
+                  return (value == null || value.isEmpty)
+                      ? "Please Enter Department Name"
+                      : null;
+                },
+                onSaved: (newValue) {
+                  edepartment = newValue!;
+                },
+                decoration: const InputDecoration(
+                  labelText: "Department Name",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 16.0),
-            TextFormField(
-              autocorrect: true,
+              SizedBox(height: 16.0),
+              TextFormField(
+                autocorrect: true,
 
-              keyboardType: TextInputType.text,
-              validator: (value) {
-                return (value == null || value.isEmpty)
-                    ? "Please Enter Event Description"
-                    : null;
-              },
-              onSaved: (newValue) {
-                edescription = newValue!;
-              },
-              decoration: const InputDecoration(
-                labelText: "Event Description",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                keyboardType: TextInputType.text,
+                validator: (value) {
+                  return (value == null || value.isEmpty)
+                      ? "Please Enter Event Description"
+                      : null;
+                },
+                onSaved: (newValue) {
+                  edescription = newValue!;
+                },
+                decoration: const InputDecoration(
+                  labelText: "Event Description",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 16.0),
-            TextFormField(
-              controller: _dateController,
-              readOnly: true,
-              onTap: () => _selectEventDate(context),
-              validator: (value) {
-                return (value == null || value.isEmpty)
-                    ? "Please Select an Event Date"
-                    : null;
-              },
-              decoration: const InputDecoration(
-                labelText: "Event Date",
-                hintText: "Select Date",
-                prefixIcon: Icon(
-                  Icons.calendar_today,
-                  color: Color(0xFF00F2FE),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              SizedBox(height: 16.0),
+              TextFormField(
+                controller: _dateController,
+                readOnly: true,
+                onTap: () => _selectEventDate(context),
+                validator: (value) {
+                  return (value == null || value.isEmpty)
+                      ? "Please Select an Event Date"
+                      : null;
+                },
+                decoration: const InputDecoration(
+                  labelText: "Event Date",
+                  hintText: "Select Date",
+                  prefixIcon: Icon(
+                    Icons.calendar_today,
+                    color: Color(0xFF00F2FE),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 16.0),
+              SizedBox(height: 16.0),
 
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 14.0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 14.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                ),
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+
+                    EventData newEvent = EventData(
+                      eventName: ename,
+                      college: ecollege,
+                      department: edepartment,
+                      eventDescription: edescription,
+                      eventDate: edate!,
+                    );
+
+                    Navigator.pop(context, newEvent);
+                  }
+                },
+                child: const Text(
+                  "Add Event",
+                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
               ),
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-
-                  EventData newEvent = EventData(
-                    eventName: ename,
-                    college: ecollege,
-                    department: edepartment,
-                    eventDescription: edescription,
-                    eventDate: edate!,
-                  );
-                  Navigator.pop(context, newEvent);
-                }
-              },
-              child: const Text(
-                "Add Event",
-                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
