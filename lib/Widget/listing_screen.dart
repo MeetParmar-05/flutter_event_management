@@ -7,10 +7,14 @@ class ListingScreen extends StatelessWidget {
     super.key,
     required this.events,
     required this.onEventAdded,
+    required this.onEventDeleted,
+    required this.onEventUpdated,
   });
 
   final List<EventData> events;
   final ValueChanged<EventData> onEventAdded;
+  final ValueChanged<EventData> onEventDeleted;
+  final ValueChanged<EventData> onEventUpdated;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,7 @@ class ListingScreen extends StatelessWidget {
         backgroundColor: Colors.cyanAccent,
         foregroundColor: Colors.black,
         title: Text(
-          'Event Manager',
+          'Event Listing',
           style: TextStyle(
             fontFamily: "orbitron",
             fontSize: 24,
@@ -136,12 +140,16 @@ class ListingScreen extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          onEventUpdated(event);
+                        },
                         icon: Icon(Icons.edit, color: Colors.blue),
                       ),
                       SizedBox(width: 8),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          onEventDeleted(event);
+                        },
                         icon: Icon(Icons.delete, color: Colors.red),
                       ),
                     ],
