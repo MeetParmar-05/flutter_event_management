@@ -8,18 +8,30 @@ class ListingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color(0xFF000000), // Pure black
-            Color(0xFF15161B), // Dark carbon
-            Color(0xFF202229), // Metallic charcoal
-          ],
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        backgroundColor: Colors.cyanAccent,
+        foregroundColor: Colors.black,
+        title: Text(
+          'Event Manager',
+          style: TextStyle(
+            fontFamily: "orbitron",
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
         ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.add, size: 40),
+            ),
+          ),
+        ],
       ),
       child: ListView.builder(
         itemCount: events.length,
@@ -35,71 +47,71 @@ class ListingScreen extends StatelessWidget {
                   color: Color(0xFF00F2FE), // Vivid Neon Cyan accent line
                   width: 5,
                 ),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFF00F2FE), // Subtle neon glow shadow
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
               ),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFF00F2FE), // Subtle neon glow shadow
-                  blurRadius: 12,
-                  offset: const Offset(0, 4),
+              child: ListTile(
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 12,
                 ),
-              ],
-            ),
-            child: ListTile(
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 12,
-              ),
-              isThreeLine:
-                  true, // Allocates vertical room for the multi-line subtitle column
-              leading: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  // color: const Color(0xFF00F2FE), // Soft neon icon background
-                  // shape: BoxShape.circle,
+                isThreeLine:
+                    true, // Allocates vertical room for the multi-line subtitle column
+                leading: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    // color: const Color(0xFF00F2FE), // Soft neon icon background
+                    // shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.event_available,
+                    color: Color(0xFF00F2FE), // Matches the neon accent
+                    size: 24,
+                  ),
                 ),
-                child: const Icon(
-                  Icons.event_available,
-                  color: Color(0xFF00F2FE), // Matches the neon accent
-                  size: 24,
+                title: Text(
+                  "${event.eventName} ",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    letterSpacing: 0.5,
+                  ),
                 ),
-              ),
-              title: Text(
-                "${event.eventName} ",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  letterSpacing: 0.5,
-                ),
-              ),
-              subtitle: Padding(
-                padding: const EdgeInsets.only(top: 6.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "${event.department} Department",
-                      style: TextStyle(
-                        color: const Color(0xFF00F2FE),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 13,
+                subtitle: Padding(
+                  padding: const EdgeInsets.only(top: 6.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "${event.department} Department",
+                        style: TextStyle(
+                          color: const Color(0xFF00F2FE),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 13,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      "${event.eventDate.day}-${event.eventDate.month}-${event.eventDate.year}",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 13,
-                        height: 1.3,
+                      const SizedBox(height: 4),
+                      Text(
+                        "${event.eventDate.day}-${event.eventDate.month}-${event.eventDate.year}",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                          height: 1.3,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

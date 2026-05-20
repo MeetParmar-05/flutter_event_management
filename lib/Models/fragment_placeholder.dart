@@ -1,4 +1,5 @@
 import 'package:event_management/Widget/listing_screen.dart';
+import 'package:event_management/Widgets/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:event_management/Models/event_data.dart';
 
@@ -141,6 +142,52 @@ class _FragmentPlaceholderState extends State<FragmentPlaceholder> {
 
   @override
   Widget build(BuildContext context) {
-    return ListingScreen(events: events);
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: AlignmentGeometry.topLeft,
+          end: AlignmentGeometry.bottomRight,
+          colors: [
+            Color(0xFF000000), // Pure black
+            Color(0xFF15161B), // Dark carbon
+            Color(0xFF202229), // Metallic charcoal
+          ],
+        ),
+      ),
+      child: Column(
+        children: [
+          Center(
+            child: Text(
+              "Initial Text",
+              style: TextStyle(backgroundColor: Colors.orange),
+            ),
+          ),
+          Expanded(
+            child: Navigator(
+              initialRoute: '/',
+              onGenerateRoute: (settings) {
+                WidgetBuilder builder;
+                switch (settings.name) {
+                  case '/':
+                  case '/s1':
+                    builder = (BuildContext context) => SplashScreen();
+                    break;
+                  case '/s2':
+                    builder = (BuildContext context) =>
+                        ListingScreen(events: events);
+                    break;
+                  default:
+                    builder = (BuildContext context) =>
+                        Scaffold(body: Center(child: Text("Route Not Found!")));
+                }
+                return MaterialPageRoute(builder: builder, settings: settings);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
