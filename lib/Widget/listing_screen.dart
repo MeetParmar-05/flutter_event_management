@@ -1,16 +1,11 @@
 import 'package:event_management/Models/event_data.dart';
 import 'package:flutter/material.dart';
 
-class ListingScreen extends StatefulWidget {
+class ListingScreen extends StatelessWidget {
   const ListingScreen({super.key, required this.events});
 
   final List<EventData> events;
 
-  @override
-  State<ListingScreen> createState() => _ListingScreenState();
-}
-
-class _ListingScreenState extends State<ListingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,35 +33,19 @@ class _ListingScreenState extends State<ListingScreen> {
           ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     Navigator.pop(context);
-      //   },
-      //   child: Icon(Icons.arrow_back),
-      // ),
-      body: Container(
-        padding: EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Color(0xFF000000), Color(0xFF15161B), Color(0xFF202229)],
-          ),
-        ),
-        child: ListView.builder(
-          itemCount: widget.events.length,
-          itemBuilder: (context, index) {
-            EventData event = widget.events[index];
-            return Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: BoxDecoration(
-                color: const Color(0xFF1E1E2E), // Deep slate dark surface
-                borderRadius: BorderRadius.circular(16),
-                border: const Border(
-                  left: BorderSide(
-                    color: Color(0xFF00F2FE), // Vivid Neon Cyan accent line
-                    width: 5,
-                  ),
+      child: ListView.builder(
+        itemCount: events.length,
+        itemBuilder: (context, index) {
+          EventData event = events[index];
+          return Container(
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            decoration: BoxDecoration(
+              color: const Color(0xFF1E1E2E), // Deep slate dark surface
+              borderRadius: BorderRadius.circular(16),
+              border: const Border(
+                left: BorderSide(
+                  color: Color(0xFF00F2FE), // Vivid Neon Cyan accent line
+                  width: 5,
                 ),
                 boxShadow: [
                   BoxShadow(
