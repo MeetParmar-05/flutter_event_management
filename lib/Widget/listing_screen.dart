@@ -37,9 +37,7 @@ class ListingScreen extends StatelessWidget {
             child: IconButton(
               onPressed: () async {
                 final newEvent = await Navigator.of(context).push<EventData>(
-                  MaterialPageRoute(
-                    builder: (context) => const AddEventScreen(),
-                  ),
+                  MaterialPageRoute(builder: (context) => AddEventScreen()),
                 );
                 if (newEvent != null) {
                   onEventAdded(newEvent);
@@ -64,11 +62,11 @@ class ListingScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             EventData event = events[index];
             return Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
-                color: const Color(0xFF1E1E2E), // Deep slate dark surface
+                color: Color(0xFF1E1E2E), // Deep slate dark surface
                 borderRadius: BorderRadius.circular(16),
-                border: const Border(
+                border: Border(
                   left: BorderSide(
                     color: Color(0xFF00F2FE), // Vivid Neon Cyan accent line
                     width: 5,
@@ -76,26 +74,26 @@ class ListingScreen extends StatelessWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF00F2FE), // Subtle neon glow shadow
+                    color: Color(0xFF00F2FE), // Subtle neon glow shadow
                     blurRadius: 12,
-                    offset: const Offset(0, 4),
+                    offset: Offset(0, 4),
                   ),
                 ],
               ),
               child: ListTile(
-                contentPadding: const EdgeInsets.symmetric(
+                contentPadding: EdgeInsets.symmetric(
                   horizontal: 20,
                   vertical: 12,
                 ),
                 isThreeLine:
                     true, // Allocates vertical room for the multi-line subtitle column
                 leading: Container(
-                  padding: const EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     // color: const Color(0xFF00F2FE), // Soft neon icon background
                     // shape: BoxShape.circle,
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.event_available,
                     color: Color(0xFF00F2FE), // Matches the neon accent
                     size: 24,
@@ -111,19 +109,19 @@ class ListingScreen extends StatelessWidget {
                   ),
                 ),
                 subtitle: Padding(
-                  padding: const EdgeInsets.only(top: 6.0),
+                  padding: EdgeInsets.only(top: 6.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "${event.department} Department",
                         style: TextStyle(
-                          color: const Color(0xFF00F2FE),
+                          color: Color(0xFF00F2FE),
                           fontWeight: FontWeight.w600,
                           fontSize: 13,
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      SizedBox(height: 4),
                       Text(
                         "${event.eventDate.day}-${event.eventDate.month}-${event.eventDate.year}",
                         style: TextStyle(
