@@ -37,11 +37,12 @@ class _SplashScreenState extends State<SplashScreen> {
             ],
           ),
           SizedBox(height: 100, width: 100),
-          Image.network(
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTS9xZ63KY9bYOX_eXfdvpvcqgXdHOOoIsag&s',
-            height: 100,
-            width: 100,
-          ),
+          Icon(Icons.event, size: 150, color: Colors.cyan),
+          // Image.network(
+          //   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTS9xZ63KY9bYOX_eXfdvpvcqgXdHOOoIsag&s',
+          //   height: 100,
+          //   width: 100,
+          // ),
           Text(
             'Event Manager',
             style: TextStyle(
@@ -60,6 +61,12 @@ class _SplashScreenState extends State<SplashScreen> {
             style: TextStyle(color: Colors.white, fontSize: 16),
           ),
           SizedBox(height: 100, width: 100),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/s2');
+            },
+            child: Text("Continue"),
+          ),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
