@@ -63,19 +63,29 @@ class _AddEventScreenState extends State<AddEventScreen> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        backgroundColor: Colors.cyanAccent,
-        foregroundColor: Colors.black,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: Colors.white,
         title: Text(
           'Add New Event',
           style: TextStyle(
             fontFamily: "orbitron",
             fontSize: 24,
             fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
       ),
       body: Container(
         margin: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFF090B12), Color(0xFF111827)],
+          ),
+          borderRadius: BorderRadius.circular(24),
+        ),
         child: Form(
           key: _formKey,
           child: ListView(

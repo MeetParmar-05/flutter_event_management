@@ -23,75 +23,87 @@ class _SplashScreenState extends State<SplashScreen> {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
-          begin: AlignmentGeometry.topLeft,
-          end: AlignmentGeometry.bottomRight,
-          colors: [
-            Color(0xFF000000), // Pure black
-            Color(0xFF15161B), // Dark carbon
-            Color(0xFF202229), // Metallic charcoal
-          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFF06080F), Color(0xFF0C1224), Color(0xFF161B35)],
         ),
       ),
-      child: Column(
-        spacing: 8,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "V1.0.0",
-                style: TextStyle(color: Colors.white, fontSize: 16),
+              Align(
+                alignment: Alignment.topRight,
+                child: Text(
+                  "V1.0.0",
+                  style: const TextStyle(
+                    color: Colors.white70,
+                    fontSize: 14,
+                    letterSpacing: 0.4,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 64),
+              const Center(
+                child: Icon(Icons.event, size: 140, color: Color(0xFF00F2FE)),
+              ),
+              const SizedBox(height: 32),
+              const Center(
+                child: Text(
+                  'Event Manager',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 38,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 18),
+              const Center(
+                child: Text(
+                  'Organize, edit and explore every event in a premium dark mode.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 16,
+                    height: 1.5,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 50),
+              const Center(
+                child: CircularProgressIndicator.adaptive(
+                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF00F2FE)),
+                  strokeWidth: 4.0,
+                ),
+              ),
+              const SizedBox(height: 16),
+              const Center(
+                child: Text(
+                  "Fetching data...",
+                  style: TextStyle(color: Colors.white70, fontSize: 15),
+                ),
+              ),
+              const Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.copyright, size: 18, color: Colors.white54),
+                  const SizedBox(width: 8),
+                  Text(
+                    '${DateTime.now().year} - Event Manager. All rights reserved.',
+                    style: const TextStyle(color: Colors.white54, fontSize: 14),
+                  ),
+                ],
               ),
             ],
           ),
-          SizedBox(height: 100, width: 100),
-          Icon(Icons.event, size: 150, color: Colors.cyan),
-          // Image.network(
-          //   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTS9xZ63KY9bYOX_eXfdvpvcqgXdHOOoIsag&s',
-          //   height: 100,
-          //   width: 100,
-          // ),
-          Text(
-            'Event Manager',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 35,
-              fontWeight: FontWeight(50),
-            ),
-          ),
-          SizedBox(height: 100, width: 100),
-          CircularProgressIndicator.adaptive(
-            valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF00F2FE)),
-            strokeWidth: 4.0,
-          ),
-          Text(
-            "Fetching data...",
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
-          SizedBox(height: 100, width: 100),
-          // ElevatedButton(
-          //   onPressed: () {
-          //     Navigator.pushReplacementNamed(widget.buildContext, '/s2');
-          //   },
-          //   child: Text("Continue"),
-          // ),
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Icon(Icons.copyright, size: 20, color: Colors.white),
-                SizedBox(width: 4),
-                Text(
-                  '${DateTime.now().year} - Event Manager. All rights reserved.',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

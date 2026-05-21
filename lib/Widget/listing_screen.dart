@@ -23,14 +23,16 @@ class ListingScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        backgroundColor: Colors.cyanAccent,
-        foregroundColor: Colors.black,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: Colors.white,
         title: Text(
           'Event Listing',
           style: TextStyle(
             fontFamily: "orbitron",
             fontSize: 24,
             fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
         actions: [
@@ -74,13 +76,6 @@ class ListingScreen extends StatelessWidget {
                     width: 5,
                   ),
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0xFF00F2FE), // Subtle neon glow shadow
-                    blurRadius: 12,
-                    offset: Offset(0, 4),
-                  ),
-                ],
               ),
               child: ListTile(
                 contentPadding: EdgeInsets.symmetric(

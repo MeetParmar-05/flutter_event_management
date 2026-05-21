@@ -61,19 +61,29 @@ class _EditEventScreenState extends State<EditEventScreen> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        backgroundColor: Colors.cyanAccent,
-        foregroundColor: Colors.black,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: Colors.white,
         title: Text(
           'Edit Existing Event',
           style: TextStyle(
             fontFamily: "orbitron",
             fontSize: 24,
             fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
       ),
       body: Container(
         margin: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFF090B12), Color(0xFF111827)],
+          ),
+          borderRadius: BorderRadius.circular(24),
+        ),
         child: Form(
           key: _formKey,
           child: ListView(
@@ -212,10 +222,12 @@ class _EditEventScreenState extends State<EditEventScreen> {
                       department: _departmentController.text,
                       eventDescription: _descriptionController.text,
                       eventDate: _dateController.text.isNotEmpty
-                          ? DateTime.parse(
-                              "${_dateController.text.split('/')[2]}-${_dateController.text.split('/')[1]}-${_dateController.text.split('/')[0]}",
+                          ? DateTime(
+                              int.parse(_dateController.text.split('/')[2]),
+                              int.parse(_dateController.text.split('/')[1]),
+                              int.parse(_dateController.text.split('/')[0]),
                             )
-                          : widget.event.eventDate,
+                          : DateTime.now(),
                     );
 
                     Navigator.pop(context, newEvent);
