@@ -15,28 +15,34 @@ class FragmentPlaceholder extends StatefulWidget {
 }
 
 class _FragmentPlaceholderState extends State<FragmentPlaceholder> {
+  @override
+  void initState() {
+    super.initState();
+    loadList();
+  }
+
   List<EventData> events = [
-    EventData(
-      eventName: 'Tech Symposium',
-      college: 'ABC College',
-      department: 'Computer Science',
-      eventDescription: 'A symposium showcasing the latest in technology.',
-      eventDate: DateTime(2024, 10, 15),
-    ),
-    EventData(
-      eventName: 'Cultural Fest',
-      college: 'XYZ University',
-      department: 'Arts and Culture',
-      eventDescription: 'A celebration of diverse cultures and talents.',
-      eventDate: DateTime(2024, 11, 20),
-    ),
-    EventData(
-      eventName: 'Sports Meet',
-      college: 'PQR Institute',
-      department: 'Physical Education',
-      eventDescription: 'An inter-college sports competition.',
-      eventDate: DateTime(2024, 12, 5),
-    ),
+    // EventData(
+    //   eventName: 'Tech Symposium',
+    //   college: 'ABC College',
+    //   department: 'Computer Science',
+    //   eventDescription: 'A symposium showcasing the latest in technology.',
+    //   eventDate: DateTime(2024, 10, 15),
+    // ),
+    // EventData(
+    //   eventName: 'Cultural Fest',
+    //   college: 'XYZ University',
+    //   department: 'Arts and Culture',
+    //   eventDescription: 'A celebration of diverse cultures and talents.',
+    //   eventDate: DateTime(2024, 11, 20),
+    // ),
+    // EventData(
+    //   eventName: 'Sports Meet',
+    //   college: 'PQR Institute',
+    //   department: 'Physical Education',
+    //   eventDescription: 'An inter-college sports competition.',
+    //   eventDate: DateTime(2024, 12, 5),
+    // ),
   ];
 
   Future<void> saveList() async {
@@ -46,6 +52,21 @@ class _FragmentPlaceholderState extends State<FragmentPlaceholder> {
       await prefs.setString("events", jsonString);
     } catch (e) {
       print("Error saving list: $e");
+    }
+  }
+
+  Future<void> loadList() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? jsonString = prefs.getString('events');
+    if (jsonString != null) {
+      List<dynamic> jsonList = jsonDecode(jsonString);
+      setState(() {
+        events = jsonList.map((e) => EventData.fromJSON(e)).toList();
+      });
+    } else {
+      setState(() {
+        events = [];
+      });
     }
   }
 
@@ -108,14 +129,14 @@ class _FragmentPlaceholderState extends State<FragmentPlaceholder> {
                           if (index != -1) {
                             events[index] = updatedEvent!;
                           }
+                          saveList();
                         });
-                        saveList();
                       },
                       onToggleFavorite: (event) {
                         setState(() {
                           event.isFavorite = !event.isFavorite;
+                          saveList();
                         });
-                        saveList();
                       },
                     );
                     break;

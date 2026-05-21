@@ -5,8 +5,7 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-
-      home: Scaffold(body: FragmentPlaceholder()),
+      home: const Scaffold(body: FragmentPlaceholder()),
     ),
   );
 }

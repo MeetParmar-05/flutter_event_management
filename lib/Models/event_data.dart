@@ -25,4 +25,15 @@ class EventData {
       "isFavorite": isFavorite,
     };
   }
+
+  factory EventData.fromJSON(Map<String, dynamic> json) {
+    return EventData(
+      eventName: json["eventName"],
+      college: json["college"],
+      department: json["department"],
+      eventDescription: json["eventDescription"],
+      eventDate: DateTime.parse(json["eventDate"]),
+      isFavorite: json["isFavorite"] ?? false,
+    );
+  }
 }
