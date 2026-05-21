@@ -64,7 +64,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
         backgroundColor: Colors.cyanAccent,
         foregroundColor: Colors.black,
         title: Text(
-          'Edit Event',
+          'Edit Existing Event',
           style: TextStyle(
             fontFamily: "orbitron",
             fontSize: 24,
@@ -73,12 +73,13 @@ class _EditEventScreenState extends State<EditEventScreen> {
         ),
       ),
       body: Container(
-        margin: const EdgeInsets.all(16.0),
+        margin: const EdgeInsets.all(16),
         child: Form(
           key: _formKey,
           child: ListView(
             children: [
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 controller: _nameController,
                 autocorrect: true,
                 autofocus: true,
@@ -93,13 +94,15 @@ class _EditEventScreenState extends State<EditEventScreen> {
                 },
                 decoration: const InputDecoration(
                   labelText: "Event Name",
+                  labelStyle: TextStyle(color: Colors.white70),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
                 ),
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 16),
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 controller: _collegeController,
                 autocorrect: true,
 
@@ -114,16 +117,17 @@ class _EditEventScreenState extends State<EditEventScreen> {
                 },
                 decoration: const InputDecoration(
                   labelText: "College Name",
+                  labelStyle: TextStyle(color: Colors.white70),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
                 ),
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 16),
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 controller: _departmentController,
                 autocorrect: true,
-
                 keyboardType: TextInputType.text,
                 validator: (value) {
                   return (value == null || value.isEmpty)
@@ -135,16 +139,17 @@ class _EditEventScreenState extends State<EditEventScreen> {
                 },
                 decoration: const InputDecoration(
                   labelText: "Department Name",
+                  labelStyle: TextStyle(color: Colors.white70),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
                 ),
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 16),
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 controller: _descriptionController,
                 autocorrect: true,
-
                 keyboardType: TextInputType.text,
                 validator: (value) {
                   return (value == null || value.isEmpty)
@@ -156,13 +161,15 @@ class _EditEventScreenState extends State<EditEventScreen> {
                 },
                 decoration: const InputDecoration(
                   labelText: "Event Description",
+                  labelStyle: TextStyle(color: Colors.white70),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
                 ),
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 16),
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 controller: _dateController,
                 readOnly: true,
                 onTap: () => selectEventDate(context),
@@ -173,29 +180,32 @@ class _EditEventScreenState extends State<EditEventScreen> {
                 },
                 decoration: const InputDecoration(
                   labelText: "Event Date",
+                  labelStyle: TextStyle(color: Colors.white70),
                   hintText: "Select Date",
+                  hintStyle: TextStyle(color: Colors.white70),
                   prefixIcon: Icon(
                     Icons.calendar_today,
                     color: Color(0xFF00F2FE),
                   ),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
                 ),
               ),
-              SizedBox(height: 16.0),
-
+              SizedBox(height: 16),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 14.0),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 14,
+                    horizontal: 24,
+                  ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.circular(20),
                   ),
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-
                     EventData newEvent = EventData(
                       eventName: _nameController.text,
                       college: _collegeController.text,
@@ -212,8 +222,8 @@ class _EditEventScreenState extends State<EditEventScreen> {
                   }
                 },
                 child: const Text(
-                  "Edit Event",
-                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                  "Confirm Edit",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ],

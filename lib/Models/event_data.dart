@@ -14,4 +14,15 @@ class EventData {
     required this.eventDate,
     this.isFavorite = false,
   });
+
+  Map<String, dynamic> toJSON() {
+    return {
+      "eventName": eventName,
+      "college": college,
+      "department": department,
+      "eventDescription": eventDescription,
+      "eventDate": eventDate.toIso8601String(),
+      "isFavorite": isFavorite,
+    };
+  }
 }
