@@ -4,6 +4,8 @@ import 'package:event_management/Widget/listing_screen.dart';
 import 'package:event_management/Widgets/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:event_management/Models/event_data.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 class FragmentPlaceholder extends StatefulWidget {
   const FragmentPlaceholder({super.key});
@@ -36,6 +38,16 @@ class _FragmentPlaceholderState extends State<FragmentPlaceholder> {
       eventDate: DateTime(2024, 12, 5),
     ),
   ];
+
+  Future<void> saveList() async {
+    try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      String jsonString = jsonEncode(events.map((e) => e.toJSON()).toList());
+      await prefs.setString("events", jsonString);
+    } catch (e) {
+      print("Error saving list: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,11 +84,13 @@ class _FragmentPlaceholderState extends State<FragmentPlaceholder> {
                       onEventAdded: (event) {
                         setState(() {
                           events.add(event);
+                          saveList();
                         });
                       },
                       onEventDeleted: (event) {
                         setState(() {
                           events.remove(event);
+                          saveList();
                         });
                       },
                       onEventUpdated: (eventToUpdate) async {
@@ -95,11 +109,13 @@ class _FragmentPlaceholderState extends State<FragmentPlaceholder> {
                             events[index] = updatedEvent!;
                           }
                         });
+                        saveList();
                       },
                       onToggleFavorite: (event) {
                         setState(() {
                           event.isFavorite = !event.isFavorite;
                         });
+                        saveList();
                       },
                     );
                     break;

@@ -171,12 +171,13 @@ class _AddEventScreenState extends State<AddEventScreen> {
                 },
                 decoration: const InputDecoration(
                   labelText: "Event Date",
+                  labelStyle: TextStyle(color: Colors.white70),
                   hintText: "Select Date",
+                  hintStyle: TextStyle(color: Colors.white70),
                   prefixIcon: Icon(
                     Icons.calendar_today,
                     color: Color(0xFF00F2FE),
                   ),
-                  labelStyle: TextStyle(color: Colors.white70),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
@@ -210,7 +211,6 @@ class _AddEventScreenState extends State<AddEventScreen> {
                             )
                           : DateTime.now(),
                     );
-
                     Navigator.pop(context, newEvent);
                   }
                 },
