@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen({super.key, required this.buildContext});
+
+  final BuildContext buildContext;
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 3), () {
+      Navigator.pushReplacementNamed(widget.buildContext, '/s2');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -61,12 +71,12 @@ class _SplashScreenState extends State<SplashScreen> {
             style: TextStyle(color: Colors.white, fontSize: 16),
           ),
           SizedBox(height: 100, width: 100),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/s2');
-            },
-            child: Text("Continue"),
-          ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     Navigator.pushReplacementNamed(widget.buildContext, '/s2');
+          //   },
+          //   child: Text("Continue"),
+          // ),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
