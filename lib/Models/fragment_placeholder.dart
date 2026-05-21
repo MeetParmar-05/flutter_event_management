@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:event_management/Widget/add_event_screen.dart';
 import 'package:event_management/Widget/edit_event_screen.dart';
 import 'package:event_management/Widget/listing_screen.dart';
@@ -95,6 +93,11 @@ class _FragmentPlaceholderState extends State<FragmentPlaceholder> {
                           if (index != -1) {
                             events[index] = updatedEvent!;
                           }
+                        });
+                      },
+                      onToggleFavorite: (event) {
+                        setState(() {
+                          event.isFavorite = !event.isFavorite;
                         });
                       },
                     );

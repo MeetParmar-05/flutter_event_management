@@ -4,6 +4,7 @@ class EventData {
   final String department;
   final String eventDescription;
   final DateTime eventDate;
+  bool isFavorite;
 
   EventData({
     required this.eventName,
@@ -11,5 +12,6 @@ class EventData {
     required this.department,
     required this.eventDescription,
     required this.eventDate,
+    this.isFavorite = false,
   });
 }
