@@ -63,7 +63,8 @@ class _FragmentPlaceholderState extends State<FragmentPlaceholder> {
                 switch (settings.name) {
                   case '/':
                   case '/s1':
-                    builder = (BuildContext context) => SplashScreen();
+                    builder = (BuildContext context) =>
+                        SplashScreen(buildContext: context);
                     break;
                   case '/s2':
                     builder = (BuildContext context) => ListingScreen(
