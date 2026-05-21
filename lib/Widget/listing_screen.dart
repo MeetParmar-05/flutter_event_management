@@ -9,12 +9,14 @@ class ListingScreen extends StatelessWidget {
     required this.onEventAdded,
     required this.onEventDeleted,
     required this.onEventUpdated,
+    required this.onToggleFavorite,
   });
 
   final List<EventData> events;
   final ValueChanged<EventData> onEventAdded;
   final ValueChanged<EventData> onEventDeleted;
   final ValueChanged<EventData> onEventUpdated;
+  final ValueChanged<EventData> onToggleFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -137,6 +139,18 @@ class ListingScreen extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      IconButton(
+                        onPressed: () {
+                          onToggleFavorite(event);
+                        },
+                        icon: Icon(
+                          Icons.star,
+                          color: event.isFavorite
+                              ? Colors.yellowAccent
+                              : Colors.white,
+                        ),
+                      ),
+                      SizedBox(width: 8),
                       IconButton(
                         onPressed: () {
                           onEventUpdated(event);
