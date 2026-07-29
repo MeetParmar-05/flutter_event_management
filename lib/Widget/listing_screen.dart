@@ -28,22 +28,18 @@ class ListingScreen extends StatelessWidget {
         foregroundColor: Colors.white,
         title: Text(
           'Event Listing',
-          style: TextStyle(
-            fontFamily: "orbitron",
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
         ),
         actions: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5),
             child: IconButton(
               onPressed: () async {
-                final newEvent = await Navigator.of(context).push<EventData>(
-                  MaterialPageRoute(builder: (context) => AddEventScreen()),
-                );
-                if (newEvent != null) {
+                final newEvent = await Navigator.of(context).pushNamed('/s3');
+                if (newEvent != null && newEvent is EventData) {
                   onEventAdded(newEvent);
                 }
               },
@@ -98,12 +94,10 @@ class ListingScreen extends StatelessWidget {
                 ),
                 title: Text(
                   "${event.eventName} ",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    letterSpacing: 0.5,
-                  ),
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
                 subtitle: Padding(
                   padding: EdgeInsets.only(top: 6.0),
@@ -112,55 +106,50 @@ class ListingScreen extends StatelessWidget {
                     children: [
                       Text(
                         "${event.department} Department",
-                        style: TextStyle(
-                          color: Color(0xFF00F2FE),
-                          fontWeight: FontWeight.w600,
-                          fontSize: 13,
-                        ),
+                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                              color: Color(0xFF00F2FE),
+                              fontWeight: FontWeight.w600,
+                            ),
                       ),
                       SizedBox(height: 4),
                       Text(
                         "${event.eventDate.day}-${event.eventDate.month}-${event.eventDate.year}",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 13,
-                          height: 1.3,
-                        ),
+                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                              color: Colors.white,
+                            ),
                       ),
                     ],
                   ),
                 ),
-                trailing: Container(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          onToggleFavorite(event);
-                        },
-                        icon: Icon(
-                          Icons.star,
-                          color: event.isFavorite
-                              ? Colors.yellowAccent
-                              : Colors.white,
-                        ),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        onToggleFavorite(event);
+                      },
+                      icon: Icon(
+                        Icons.star,
+                        color: event.isFavorite
+                            ? Colors.yellowAccent
+                            : Colors.white,
                       ),
-                      SizedBox(width: 8),
-                      IconButton(
-                        onPressed: () {
-                          onEventUpdated(event);
-                        },
-                        icon: Icon(Icons.edit, color: Colors.blue),
-                      ),
-                      SizedBox(width: 8),
-                      IconButton(
-                        onPressed: () {
-                          onEventDeleted(event);
-                        },
-                        icon: Icon(Icons.delete, color: Colors.red),
-                      ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(width: 8),
+                    IconButton(
+                      onPressed: () {
+                        onEventUpdated(event);
+                      },
+                      icon: Icon(Icons.edit, color: Colors.blue),
+                    ),
+                    SizedBox(width: 8),
+                    IconButton(
+                      onPressed: () {
+                        onEventDeleted(event);
+                      },
+                      icon: Icon(Icons.delete, color: Colors.red),
+                    ),
+                  ],
                 ),
               ),
             );

@@ -66,12 +66,10 @@ class _EditEventScreenState extends State<EditEventScreen> {
         foregroundColor: Colors.white,
         title: Text(
           'Edit Existing Event',
-          style: TextStyle(
-            fontFamily: "orbitron",
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
         ),
       ),
       body: Container(
@@ -217,6 +215,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     EventData newEvent = EventData(
+                      id: widget.event.id,
                       eventName: _nameController.text,
                       college: _collegeController.text,
                       department: _departmentController.text,

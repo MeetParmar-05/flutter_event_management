@@ -68,12 +68,10 @@ class _AddEventScreenState extends State<AddEventScreen> {
         foregroundColor: Colors.white,
         title: Text(
           'Add New Event',
-          style: TextStyle(
-            fontFamily: "orbitron",
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
         ),
       ),
       body: Container(

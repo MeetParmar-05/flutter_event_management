@@ -13,8 +13,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    // Using a delayed Future to simulate loading, then navigating safely.
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(widget.buildContext, '/s2');
+      if (!mounted) return;
+      // Using Navigator.of(context) instead of the passed context,
+      // as it is safer when called within the build context of this widget.
+      Navigator.of(context).pushReplacementNamed('/s2');
     });
   }
 

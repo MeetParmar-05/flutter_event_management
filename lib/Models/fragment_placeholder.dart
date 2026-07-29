@@ -51,7 +51,7 @@ class _FragmentPlaceholderState extends State<FragmentPlaceholder> {
       String jsonString = jsonEncode(events.map((e) => e.toJSON()).toList());
       await prefs.setString("events", jsonString);
     } catch (e) {
-      print("Error saving list: $e");
+      // Handle or log error appropriately for production
     }
   }
 
@@ -116,18 +116,16 @@ class _FragmentPlaceholderState extends State<FragmentPlaceholder> {
                       },
                       onEventUpdated: (eventToUpdate) async {
                         int index = events.indexWhere(
-                          (e) => e.eventName == eventToUpdate.eventName,
+                          (e) => e.id == eventToUpdate.id,
                         );
                         final updatedEvent = await Navigator.of(context)
-                            .push<EventData>(
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    EditEventScreen(event: events[index]),
-                              ),
+                            .pushNamed(
+                              '/s4',
+                              arguments: events[index],
                             );
                         setState(() {
-                          if (index != -1) {
-                            events[index] = updatedEvent!;
+                          if (index != -1 && updatedEvent != null && updatedEvent is EventData) {
+                            events[index] = updatedEvent;
                           }
                           saveList();
                         });
